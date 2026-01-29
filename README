@@ -9,21 +9,21 @@ Transform text into interactive knowledge graphs with subject-predicate-object t
 
 ## ✨ Features
 
-- **Dual Extraction Modes**
-  - 🤖 **LLM Mode**: High-accuracy extraction using Groq API (Llama-3.3-70b)
-  - 🔧 **spaCy Mode**: Fast, offline extraction using NLP techniques
+-  Dual Extraction Modes
+  - 🤖 LLM Mode: High-accuracy extraction using Groq API (Llama-3.3-70b)
+  - 🔧 spaCy Mode: Fast, offline extraction using NLP techniques
 
-- **Interactive Visualization**
+- Interactive Visualization
   - 📊 Beautiful graph visualizations with NetworkX and Matplotlib
   - 🎨 Spring layout algorithm for optimal node positioning
   - 💾 Export graphs as PNG images
 
-- **Neo4j Database Integration**
+- Neo4j Database Integration
   - 🗄️ Persist knowledge graphs for long-term storage
   - 🔍 Advanced querying and relationship exploration
   - 📈 Graph analytics and statistics
 
-- **User-Friendly Interface**
+- User-Friendly Interface
   - 🖥️ Clean Streamlit web interface
   - 📥 JSON export for extracted triples
   - 📊 Real-time statistics and centrality analysis
@@ -38,23 +38,23 @@ Transform text into interactive knowledge graphs with subject-predicate-object t
 
 ### Installation
 
-1. **Clone the repository**
+1. Clone the repository
 ```bash
 git clone https://github.com/yourusername/knowledge-graph-extractor.git
 cd knowledge-graph-extractor
 ```
 
-2. **Install dependencies**
+2. Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-3. **Download spaCy model**
+3. Download spaCy model
 ```bash
 python -m spacy download en_core_web_sm
 ```
 
-4. **Configure environment variables**
+4. Configure environment variables
 
 Create a `.env` file in the root directory:
 ```env
@@ -67,7 +67,7 @@ NEO4J_USER=neo4j
 NEO4J_PASSWORD=your_password_here
 ```
 
-5. **Run the application**
+5. *un the application
 ```bash
 streamlit run ui.py
 ```
@@ -78,11 +78,11 @@ The application will open in your browser at `http://localhost:8501`
 
 ### Basic Workflow
 
-1. **Enter Text**: Paste or type text into the input area
-2. **Select Mode**: Choose between Online (LLM) or Offline (spaCy) extraction
-3. **Extract**: Click the "Extract Knowledge" button
-4. **Visualize**: View the generated knowledge graph
-5. **Analyze**: Explore statistics, query relationships, or export data
+1. Enter Text: Paste or type text into the input area
+2. Select Mode: Choose between Online (LLM) or Offline (spaCy) extraction
+3. Extract: Click the "Extract Knowledge" button
+4. Visualize: View the generated knowledge graph
+5. Analyze: Explore statistics, query relationships, or export data
 
 ### Example
 
@@ -163,14 +163,14 @@ builder.visualize()
 ### Extraction Modes
 
 #### LLM Mode (Online)
-- **Pros**: Higher accuracy, better semantic understanding
-- **Cons**: Requires API key, internet connection, potential costs
-- **Best for**: Complex text, academic papers, nuanced relationships
+- Pros: Higher accuracy, better semantic understanding
+- Con*: Requires API key, internet connection, potential costs
+- Best for: Complex text, academic papers, nuanced relationships
 
 #### spaCy Mode (Offline)
-- **Pros**: Fast, no API needed, privacy-preserving, free
-- **Cons**: Lower accuracy on complex text
-- **Best for**: Simple text, batch processing, air-gapped environments
+- Pros: Fast, no API needed, privacy-preserving, free
+- Cons: Lower accuracy on complex text
+- Best for: Simple text, batch processing, air-gapped environments
 
 ### Neo4j Configuration
 
@@ -225,17 +225,17 @@ py2neo>=2021.2.3
 python -m spacy download en_core_web_sm
 ```
 
-**Neo4j connection failed**
+Neo4j connection failed
 - Verify Neo4j is running: `systemctl status neo4j` (Linux) or check Neo4j Desktop
 - Check credentials in `.env` file
 - Ensure firewall allows connection to port 7687
 
-**Groq API errors**
+Groq API errors
 - Verify API key is correct
 - Check API rate limits
 - Ensure internet connectivity
 
-**Graph visualization issues**
+Graph visualization issues
 - Try reducing graph size for better performance
 - Adjust figure size in visualization parameters
 - Use Neo4j for large graphs (>500 nodes)
@@ -292,4 +292,4 @@ Project Link: [https://github.com/yourusername/knowledge-graph-extractor](https:
 
 
 
-⭐ **If you find this project useful, please consider giving it a star!** ⭐
+⭐ If you find this project useful, please consider giving it a star! ⭐
