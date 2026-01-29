@@ -1,11 +1,7 @@
 # 🧠 Knowledge Graph Extraction System
 
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-FF4B4B.svg)](https://streamlit.io)
-
-A sophisticated Python-based application that extracts structured knowledge from unstructured text using Natural Language Processing (NLP) and Large Language Models (LLMs). 
-Transform text into interactive knowledge graphs with subject-predicate-object triples.
+A sophisticated Python-based application that extracts structured knowledge from unstructured text using Natural Language Processing (NLP) 
+and Large Language Models (LLMs). Transform text into interactive knowledge graphs with subject-predicate-object triples.
 
 ## ✨ Features
 
