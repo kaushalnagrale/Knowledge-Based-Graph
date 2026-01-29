@@ -1,0 +1,295 @@
+# 🧠 Knowledge Graph Extraction System
+
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-FF4B4B.svg)](https://streamlit.io)
+
+A sophisticated Python-based application that extracts structured knowledge from unstructured text using Natural Language Processing (NLP) and Large Language Models (LLMs). 
+Transform text into interactive knowledge graphs with subject-predicate-object triples.
+
+## ✨ Features
+
+- **Dual Extraction Modes**
+  - 🤖 **LLM Mode**: High-accuracy extraction using Groq API (Llama-3.3-70b)
+  - 🔧 **spaCy Mode**: Fast, offline extraction using NLP techniques
+
+- **Interactive Visualization**
+  - 📊 Beautiful graph visualizations with NetworkX and Matplotlib
+  - 🎨 Spring layout algorithm for optimal node positioning
+  - 💾 Export graphs as PNG images
+
+- **Neo4j Database Integration**
+  - 🗄️ Persist knowledge graphs for long-term storage
+  - 🔍 Advanced querying and relationship exploration
+  - 📈 Graph analytics and statistics
+
+- **User-Friendly Interface**
+  - 🖥️ Clean Streamlit web interface
+  - 📥 JSON export for extracted triples
+  - 📊 Real-time statistics and centrality analysis
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Python 3.8 or higher
+- Neo4j Database (optional, for persistence)
+- Groq API key (optional, for LLM mode)
+
+### Installation
+
+1. **Clone the repository**
+```bash
+git clone https://github.com/yourusername/knowledge-graph-extractor.git
+cd knowledge-graph-extractor
+```
+
+2. **Install dependencies**
+```bash
+pip install -r requirements.txt
+```
+
+3. **Download spaCy model**
+```bash
+python -m spacy download en_core_web_sm
+```
+
+4. **Configure environment variables**
+
+Create a `.env` file in the root directory:
+```env
+# Groq API (for LLM mode)
+GROQ_API_KEY=your_groq_api_key_here
+
+# Neo4j Database (optional)
+NEO4J_URI=bolt://localhost:7687
+NEO4J_USER=neo4j
+NEO4J_PASSWORD=your_password_here
+```
+
+5. **Run the application**
+```bash
+streamlit run ui.py
+```
+
+The application will open in your browser at `http://localhost:8501`
+
+## 📖 Usage
+
+### Basic Workflow
+
+1. **Enter Text**: Paste or type text into the input area
+2. **Select Mode**: Choose between Online (LLM) or Offline (spaCy) extraction
+3. **Extract**: Click the "Extract Knowledge" button
+4. **Visualize**: View the generated knowledge graph
+5. **Analyze**: Explore statistics, query relationships, or export data
+
+### Example
+
+```python
+from kg_extractor import KnowledgeExtractor
+from kg_graph_builder import GraphBuilder
+
+# Initialize extractor
+extractor = KnowledgeExtractor(groq_api_key="your_key")
+
+# Extract knowledge
+text = """Albert Einstein was a German physicist who developed 
+the theory of relativity. He won the Nobel Prize in Physics in 1921."""
+
+triples = extractor.extract(text, mode="llm")
+
+# Build and visualize graph
+builder = GraphBuilder()
+graph = builder.build_graph(triples)
+builder.visualize()
+```
+
+### Output Example
+
+```json
+[
+  {
+    "subject": "Albert Einstein",
+    "predicate": "was",
+    "object": "German physicist"
+  },
+  {
+    "subject": "Albert Einstein",
+    "predicate": "developed",
+    "object": "theory of relativity"
+  },
+  {
+    "subject": "Albert Einstein",
+    "predicate": "won",
+    "object": "Nobel Prize in Physics"
+  }
+]
+```
+
+## 🏗️ System Architecture
+
+```
+┌─────────────────┐
+│   ui.py         │  ← Streamlit Web Interface
+└────────┬────────┘
+         │
+    ┌────▼─────────────────────┐
+    │                          │
+┌───▼──────────┐    ┌──────────▼───┐
+│ kg_extractor │    │ kg_graph_    │
+│    .py       │    │  builder.py  │
+└───┬──────────┘    └──────────┬───┘
+    │                          │
+    │  ┌───────────────────────▼───┐
+    │  │   neo4j_handler.py        │
+    │  └───────────┬───────────────┘
+    │              │
+    ▼              ▼
+[spaCy/LLM]   [Neo4j DB]
+```
+
+### Core Modules
+
+| Module | Description |
+|--------|-------------|
+| `ui.py` | Streamlit web interface with configuration and visualization |
+| `kg_extractor.py` | Dual-mode extraction engine (LLM + spaCy) |
+| `kg_graph_builder.py` | Graph construction and visualization with NetworkX |
+| `neo4j_handler.py` | Neo4j database integration and querying |
+
+## 🔧 Configuration
+
+### Extraction Modes
+
+#### LLM Mode (Online)
+- **Pros**: Higher accuracy, better semantic understanding
+- **Cons**: Requires API key, internet connection, potential costs
+- **Best for**: Complex text, academic papers, nuanced relationships
+
+#### spaCy Mode (Offline)
+- **Pros**: Fast, no API needed, privacy-preserving, free
+- **Cons**: Lower accuracy on complex text
+- **Best for**: Simple text, batch processing, air-gapped environments
+
+### Neo4j Configuration
+
+When Neo4j is enabled, you can:
+- Store multiple named graphs
+- Query entity relationships
+- Find shortest paths between entities
+- Perform graph analytics
+- Export and import graph data
+
+## 📊 Use Cases
+
+### Research & Academia
+- Literature review and knowledge synthesis
+- Citation network analysis
+- Concept map generation from educational content
+
+### Business Intelligence
+- Company relationship mapping
+- Market analysis and competitive intelligence
+- News article analysis
+
+### Content Management
+- Document classification and tagging
+- Knowledge base construction
+- Automated content summarization
+
+### Data Science
+- Feature extraction for ML models
+- Social network analysis
+- Temporal graph evolution
+
+
+## 📦 Dependencies
+
+```
+streamlit>=1.28.0
+python-dotenv>=1.0.0
+groq>=0.4.0
+networkx>=3.1
+matplotlib>=3.7.0
+spacy>=3.6.0
+py2neo>=2021.2.3
+```
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+**spaCy model not found**
+```bash
+python -m spacy download en_core_web_sm
+```
+
+**Neo4j connection failed**
+- Verify Neo4j is running: `systemctl status neo4j` (Linux) or check Neo4j Desktop
+- Check credentials in `.env` file
+- Ensure firewall allows connection to port 7687
+
+**Groq API errors**
+- Verify API key is correct
+- Check API rate limits
+- Ensure internet connectivity
+
+**Graph visualization issues**
+- Try reducing graph size for better performance
+- Adjust figure size in visualization parameters
+- Use Neo4j for large graphs (>500 nodes)
+
+## 🤝 Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+### Development Setup
+
+```bash
+# Clone your fork
+git clone https://github.com/yourusername/knowledge-graph-extractor.git
+
+# Install development dependencies
+pip install -r requirements-dev.txt
+
+# Run tests
+pytest tests/
+
+# Check code style
+flake8 .
+black .
+```
+
+
+## 🙏 Acknowledgments
+
+- [Streamlit](https://streamlit.io/) for the amazing web framework
+- [spaCy](https://spacy.io/) for NLP capabilities
+- [NetworkX](https://networkx.org/) for graph algorithms
+- [Neo4j](https://neo4j.com/) for graph database technology
+- [Groq](https://groq.com/) for fast LLM inference
+
+## 📧 Contact
+
+Your Name - Kaushal Gautam Nagrale - kaushalnagrale@gmail.com
+
+Project Link: [https://github.com/yourusername/knowledge-graph-extractor](https://github.com/yourusername/knowledge-graph-extractor)
+
+
+## 📊 Performance
+
+| Mode | Speed | Accuracy | Best For |
+|------|-------|----------|----------|
+| LLM | ~2-5s per extraction | 90-95% | Complex text |
+| spaCy | ~0.1-0.5s per extraction | 70-80% | Simple text |
+
+
+
+⭐ **If you find this project useful, please consider giving it a star!** ⭐
